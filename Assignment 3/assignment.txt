@@ -1,0 +1,34 @@
+Model sea-surface temperature (SST) as function of time, latitude, and longitude
+
+1. Use netCDF4 package to load monthly sea-surface temperature data: SeaSurfaceTemperature_monthly_187001-202402.nc. It is available in “Data and Code Examples Module” together with an example code.  Find variables: “time”, “latitude”, “longitude”, and “sst” and verifty that data for “time”, “latitude”, and “longitude” are 1-dimensional, while “sst” is a 3-dimensional data indexed by “time”, “latitude”, and “longitude” respectively, i.e., sst[5,11,7], represent sea-surface temperature, at time[5], latitude[11], and longitude [7]. Because these are temperature of ocean, so for the latitude/longitude corresponding to land, the data is not available; a fill value, in this case “-1000.0” is used. Please ignore these data. Generate your input data array “X” so that X[m,:] = (time[i], latitude[j], longitude[k]), and output array y[m] = sst[i,j,k], with m = 0, 1, 2, …, indexing all your data samples. Note that this step may take a long time if you use lists. Try to vectorize your computation using numpy arrays to speed up. (5pt)
+
+2. Split your data (X, y) into training, validation, and test portions. (1pt)
+
+3. Choose a regression model from the sklearn package or build your own model that has at least two hyperparameters to model the function y = model_function (X), where y = sst,  X = (time, latitude, longitude). Define a grid to cover the hyperparameter space that you are going to search for the best model. Train your model using the training data created at step 2 for each of the set of hyperparameters and compute the training errors and validation errors using the validation dataset. Note that you have a very large sample of data. Given the limited computing resources that you have, you may consider only using a subset of the training/validation/test data for your project. You will need to ensure a sufficient coverage of the feature space. (6pt)
+
+4. Determine the best set of hyperparameters that gives you the least validation errors and plot the dependency of your validation errors and training errors as functions of hyperparameters. (3pt)
+
+5. Assess the performance on your test dataset using the model with the best set of hyperparameters from 4: compute the model errors and generate statistics, e.g., MSE, MAE, and plot a histogram of the residuals. Display the residuals as functions of time, latitude, and longitude, respectively. Also show results specific to your models; e.g., if you use tree-based models, you can show the importance of features. Generate a prediction of monthly average temperature at Hong Kong (latitude = 22.32 deg, longitude 114.16 deg) from now to the end of 2030 and plot it as a function of time.  (5pt)
+
+Rubric
+Midterm Project Rubric
+Midterm Project Rubric
+Criteria	Ratings	Pts
+This criterion is linked to a Learning OutcomeData handling
+Loading and validation, Handling Missing data and Vectorization
+5 pts
+This criterion is linked to a Learning OutcomeData Split
+1 pts
+This criterion is linked to a Learning OutcomeTraining
+Model Selection, Hyperparam Searchspace, Training and Coverage
+6 pts
+This criterion is linked to a Learning OutcomeParameter Selection
+Hyperparam Optimization, and Train/Val-Hyperparam Plots
+3 pts
+This criterion is linked to a Learning OutcomeAnalysis
+Metrics, Residual Plots, Interpretation, Prediction
+5 pts
+This criterion is linked to a Learning OutcomeDeductions
+Incompatible/difficult to executable Jupyter notebook files, missing saved cell outputs, generated content without proper documentation
+0 pts
+Total Points: 20
